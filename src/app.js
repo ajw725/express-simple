@@ -1,21 +1,17 @@
+const path = require('path');
 const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
-
-app.get('/help', (req, res) => {
-  res.send('Help is on the way!');
-});
-
-app.get('/about', (req, res) => {
-  res.send('About');
-});
+const publicPath = path.join(__dirname, '../public');
+app.use(express.static(publicPath));
 
 app.get('/weather', (req, res) => {
-  res.send('Weather Forecast');
+  const weather = {
+    temperature: 32,
+    location: 'Boulder, CO, United States'
+  };
+  res.send(JSON.stringify(weather));
 });
 
 app.listen(3000, () => {
