@@ -1,10 +1,15 @@
 const path = require('path');
 const express = require('express');
 
-const app = express();
-
 const publicPath = path.join(__dirname, '../public');
+
+const app = express();
+app.set('view engine', 'hbs');
 app.use(express.static(publicPath));
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 app.get('/weather', (req, res) => {
   const weather = {
