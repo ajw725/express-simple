@@ -1,7 +1,42 @@
-h1 {
-  color: green;
+body {
+  color: #333;
+  font-family: arial;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+header {
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+
+header h1 {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+nav a {
+  color: #888;
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+footer {
+  color: #888;
+  border-top: 1px solid #eee;
+  margin-top: 16px 0;
 }
 
 .about-img {
-  max-width: 250px;
+  width: 250px;
 }

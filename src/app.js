@@ -44,6 +44,21 @@ app.get('/weather', (req, res) => {
   res.send(JSON.stringify(weather));
 });
 
+app.get('/help/*', (req, res) => {
+  res.status(404).render('404', {
+    title: 'Help Article Not Found',
+    message: 'The article you are looking for could not be found. Please check the url.'
+  });
+});
+
+app.get('*', (req, res) => {
+  res.status(404).render('404', {
+    title: 'Page Not Found',
+    message: 'The page you are looking for could not be found, or the address was mistyped.'
+  });
+});
+
+// start up server
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
