@@ -19,7 +19,7 @@ app.use(express.static(publicPath));
 
 app.get('/', (req, res) => {
   res.render('index', {
-    title: 'Weather App'
+    title: 'Weather App',
   });
 });
 
@@ -32,14 +32,19 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help',
-    message: 'Help is on the way!'
+    message: 'Help is on the way!',
   });
 });
 
 app.get('/weather', (req, res) => {
+  const address = req.query.address;
+  if (!address) {
+    return res.send({ error: 'You must provide an address' });
+  }
+
   const weather = {
     temperature: 32,
-    location: 'Boulder, CO, United States'
+    location: address,
   };
   res.send(JSON.stringify(weather));
 });
@@ -47,14 +52,16 @@ app.get('/weather', (req, res) => {
 app.get('/help/*', (req, res) => {
   res.status(404).render('404', {
     title: 'Help Article Not Found',
-    message: 'The article you are looking for could not be found. Please check the url.'
+    message:
+      'The article you are looking for could not be found. Please check the url.',
   });
 });
 
 app.get('*', (req, res) => {
   res.status(404).render('404', {
     title: 'Page Not Found',
-    message: 'The page you are looking for could not be found, or the address was mistyped.'
+    message:
+      'The page you are looking for could not be found, or the address was mistyped.',
   });
 });
 
